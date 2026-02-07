@@ -6,7 +6,7 @@ export default function StatsBar({ leads }: { leads: Lead[] }) {
   const noWebsiteCount = leads.reduce((sum, lead) => sum + (lead.hasWebsite ? 0 : 1), 0);
 
   const stats = [
-    { icon: Users, label: "Leads", value: leads.length },
+    { icon: Users, label: "Bedrifter", value: leads.length },
     { icon: MessageSquare, label: "Sum anmeldelser", value: totalReviews },
     { icon: Globe, label: "Uten nettside", value: noWebsiteCount },
   ];

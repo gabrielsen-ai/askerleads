@@ -18,7 +18,7 @@ export default function LeadCard({ lead }: Props) {
       <td className="px-4 py-3 align-top text-slate-700 font-mono">{formatRating(lead.rating)}</td>
       <td className="px-4 py-3 align-top text-slate-700 font-mono">{lead.userRatingCount}</td>
       <td className="px-4 py-3 align-top text-slate-700 font-mono">
-        {lead.hasWebsite ? "true" : "false"}
+        {lead.hasWebsite ? "Ja" : "Nei"}
       </td>
       <td className="px-4 py-3 align-top max-w-xs text-xs text-slate-600">
         {lead.info}
