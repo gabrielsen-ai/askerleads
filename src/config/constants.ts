@@ -8,8 +8,8 @@ export const COLORS = {
 export const INDUSTRIES: string[] = [];
 
 export const ASKER_LOCATION = {
-  latitude: 59.911812,
-  longitude: 10.562937,
+  latitude: 59.9130155,
+  longitude: 10.5583176,
 };
 
 export const SEARCH_CONFIG = {

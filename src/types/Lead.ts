@@ -8,4 +8,5 @@ export interface Lead {
   phone: string;
   hasWebsite: boolean;
   potentialScore: number;
+  info: string;
 }

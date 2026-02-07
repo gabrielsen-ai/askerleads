@@ -3,10 +3,9 @@ import LeadCard from "./LeadCard";
 
 interface Props {
   leads: Lead[];
-  onReachOut: (lead: Lead) => void;
 }
 
-export default function LeadGrid({ leads, onReachOut }: Props) {
+export default function LeadGrid({ leads }: Props) {
   if (leads.length === 0) {
     return (
       <div className="rounded-xl border border-slate-200 bg-white py-12 text-center text-slate-400">
@@ -28,12 +27,12 @@ export default function LeadGrid({ leads, onReachOut }: Props) {
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Rating</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Anmeldelser</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Nettside</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Handling</th>
+              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Info</th>
             </tr>
           </thead>
           <tbody className="text-slate-700">
             {leads.map((lead) => (
-              <LeadCard key={lead.id} lead={lead} onReachOut={onReachOut} />
+              <LeadCard key={lead.id} lead={lead} />
             ))}
           </tbody>
         </table>

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "ChIJD58-lbA_QUYRJRTEMaCIO7E",
+    "name": "Asker Bilverksted As",
+    "address": "Eternitveien 45, 3470 Slemmestad, Norway",
+    "rating": 5,
+    "userRatingCount": 43,
+    "industry": "Auto Repair",
+    "phone": "40 04 04 25",
+    "hasWebsite": false,
+    "potentialScore": 79,
+    "info": "Car repair and maintenance service i Asker. \"Had my Passat for a major service and replacement of brake discs and pads. One thing is that they are competitive in...\"."
+  },
+  {
+    "id": "ChIJNfu2iM8VQUYRlO9pFhrIscA",
+    "name": "Ditt Hår Frisør",
+    "address": "Morellveien 1, 1387 Asker, Norway",
+    "rating": 5,
+    "userRatingCount": 30,
+    "industry": "Hair Salon",
+    "phone": "66 78 79 13",
+    "hasWebsite": false,
+    "potentialScore": 76,
+    "info": "Hair Salon i Asker. \"Never liked going to the hairdresser, but here I was surprised by how good the service was. Good chat before we start...\"."
+  },
+  {
+    "id": "ChIJXS0re69tQUYRV-UoEcOZ9VM",
+    "name": "Renovering & Farge AS",
+    "address": "Storengveien 4A, 1397 Nesøya, Norway",
+    "rating": 5,
+    "userRatingCount": 14,
+    "industry": "Painter",
+    "phone": "93 98 90 52",
+    "hasWebsite": false,
+    "potentialScore": 73,
+    "info": "Painter i Asker. \"Highly recommend David! I have done extensive renovations in my apartment and have used him to paint, install new mol...\"."
+  },
+  {
+    "id": "ChIJdSKYg4o_QUYRUUdS3ztUUvE",
+    "name": "Røyken Rørlegger AS",
+    "address": "Klemmetsrudveien 25, 3440 Røyken, Norway",
+    "rating": 5,
+    "userRatingCount": 13,
+    "industry": "Plumber",
+    "phone": "41 34 34 36",
+    "hasWebsite": false,
+    "potentialScore": 73,
+    "info": "Plumber i Asker. \"I contacted this company through a nice man named Hamza. He responded to my inquiry right away and actually came to t...\"."
+  },
+  {
+    "id": "ChIJIa04x2U_QUYRXSRnvoCMPBQ",
+    "name": "Omega VVS Berger",
+    "address": "Bergertoppen 7, 3470 Slemmestad, Norway",
+    "rating": 5,
+    "userRatingCount": 5,
+    "industry": "Plumber",
+    "phone": "93 85 84 05",
+    "hasWebsite": false,
+    "potentialScore": 71,
+    "info": "Plumber i Asker. \"Really happy with Petter and the team! Thank you for your great help during a demanding renovation!\"."
+  },
+  {
+    "id": "ChIJvxgaqXMUQUYRh2gwFkkGLa0",
+    "name": "Hatlehol snekkerverksted",
+    "address": "Stokkerveien 100, 1341 Slependen, Norway",
+    "rating": 5,
+    "userRatingCount": 3,
+    "industry": "Other",
+    "phone": "66 98 04 00",
+    "hasWebsite": false,
+    "potentialScore": 71,
+    "info": "Point of interest i Asker. \"Super service and skilled best carpentry workshop\"."
+  },
+  {
+    "id": "ChIJq6r2DVkUQUYRIDugcqwX2QA",
+    "name": "Comfort Asker",
+    "address": "Kirkeveien 54, 1395 Hvalstad, Norway",
+    "rating": 5,
+    "userRatingCount": 1,
+    "industry": "Other",
+    "phone": "",
+    "hasWebsite": false,
+    "potentialScore": 70,
+    "info": "Shoe Store i Asker. \"Good 👍\"."
+  },
+  {
+    "id": "ChIJg6Rc9mUVQUYRsB5WaqzaPLE",
+    "name": "Tom Elnes Rørleggerforretning AS",
+    "address": "Vennelyveien 2A, 1390 Vollen, Norway",
+    "rating": 5,
+    "userRatingCount": 1,
+    "industry": "Plumber",
+    "phone": "66 98 70 40",
+    "hasWebsite": false,
+    "potentialScore": 70,
+    "info": "Plumber i Asker. Har 5 stjerner basert på 1 anmeldelser."
+  },
+  {
+    "id": "ChIJA0cey2YVQUYRQ1G6oxTyGEI",
+    "name": "Allproff AS",
+    "address": "Solbråveien 41, 1383 Asker, Norway",
+    "rating": 5,
+    "userRatingCount": 1,
+    "industry": "Other",
+    "phone": "45 41 81 50",
+    "hasWebsite": false,
+    "potentialScore": 70,
+    "info": "General Contractor i Asker. \"Nice, serious and provides feedback during the project.\"."
+  },
+  {
+    "id": "ChIJ8wDoUMsVQUYRclXhfDSMzUU",
+    "name": "SUPER RENHOLD SERVICE AS",
+    "address": "Øvre Frydendal 15, 1384 Asker, Norway",
+    "rating": 5,
+    "userRatingCount": 1,
+    "industry": "Other",
+    "phone": "93 80 31 70",
+    "hasWebsite": false,
+    "potentialScore": 70,
+    "info": "Other i Asker. \"All my ancestors are there. The cemetery is well-kept and pretty. Stools to sit on. Easy to navigate with these (manh...\"."
+  }
+]

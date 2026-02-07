@@ -1,15 +1,11 @@
-import { useState } from "react";
-import type { Lead } from "./types/Lead";
 import { useLeads } from "./hooks/useLeads";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Dashboard from "./components/dashboard/Dashboard";
-import ReachOutModal from "./components/reach-out/ReachOutModal";
 import Spinner from "./components/ui/Spinner";
 
 export default function App() {
-  const { leads, loading, reload } = useLeads();
-  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
+  const { leads, loading } = useLeads();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -18,16 +14,10 @@ export default function App() {
         {loading ? (
           <Spinner />
         ) : (
-          <Dashboard
-            leads={leads}
-            onReachOut={setSelectedLead}
-            onReload={reload}
-            loading={loading}
-          />
+          <Dashboard leads={leads} />
         )}
       </main>
       <Footer />
-      <ReachOutModal lead={selectedLead} onClose={() => setSelectedLead(null)} />
     </div>
   );
 }
