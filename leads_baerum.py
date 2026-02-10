@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Hent leads fra Google Places API (bedrifter uten nettside i Asker),
-verifiser via Google-søk, og skriv resultater til public/leads.json.
+Hent leads fra Google Places API (bedrifter uten nettside i Bærum),
+verifiser via Google-søk, og skriv resultater til public/leads-baerum.json.
 """
 
 import json
@@ -28,7 +28,7 @@ GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini
 
 API_URL = "https://places.googleapis.com/v1/places:searchText"
 
-ASKER_LOCATION = {"latitude": 59.9130155, "longitude": 10.5583176}
+BAERUM_LOCATION = {"latitude": 59.9186, "longitude": 10.5003}
 INITIAL_RADIUS = 5000
 MAX_RESULTS_PER_QUERY = 20
 
@@ -205,13 +205,13 @@ def _generate_info_template(place: dict, industry: str) -> str:
     if editorial:
         sentence1 = editorial.rstrip(".")
     elif industry and industry != "Annet":
-        sentence1 = f"{name} er en {industry.lower()}-bedrift i Asker"
+        sentence1 = f"{name} er en {industry.lower()}-bedrift i Bærum"
     else:
         primary_type = (place.get("primaryTypeDisplayName") or {}).get("text", "")
         if primary_type:
-            sentence1 = f"{name} er en bedrift i Asker ({primary_type})"
+            sentence1 = f"{name} er en bedrift i Bærum ({primary_type})"
         else:
-            sentence1 = f"{name} er en bedrift i Asker"
+            sentence1 = f"{name} er en bedrift i Bærum"
 
     # Setning 2: Omdømme basert på rating og antall anmeldelser
     rating = place.get("rating", 0)
@@ -279,11 +279,11 @@ def fetch_places() -> list[dict]:
 
             while len(results) < TARGET_RESULTS and page_count < MAX_PAGES:
                 body = {
-                    "textQuery": f"{query} Asker",
+                    "textQuery": f"{query} Bærum",
                     "maxResultCount": MAX_RESULTS_PER_QUERY,
                     "locationBias": {
                         "circle": {
-                            "center": ASKER_LOCATION,
+                            "center": BAERUM_LOCATION,
                             "radius": radius,
                         }
                     },
@@ -399,7 +399,7 @@ def verify_no_website(lead: dict) -> bool:
     # Steg 1: Google-søk
     if google_search is not None:
         try:
-            query = f'"{name}" Asker'
+            query = f'"{name}" Bærum'
             search_results = list(google_search(query, num_results=5))
 
             for url in search_results:
@@ -429,7 +429,7 @@ def verify_no_website(lead: dict) -> bool:
 
 
 def main():
-    print("=== AskerLeads Generator ===\n")
+    print("=== BærumLeads Generator ===\n")
 
     # Steg 1: Hent fra Google Places
     print("Steg 1: Henter leads fra Google Places API...")
@@ -464,7 +464,7 @@ def main():
 
 
 def write_results(leads: list[dict]):
-    out_path = os.path.join(os.path.dirname(__file__), "public", "leads.json")
+    out_path = os.path.join(os.path.dirname(__file__), "public", "leads-baerum.json")
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(leads, f, ensure_ascii=False, indent=2)
