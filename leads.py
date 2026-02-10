@@ -18,21 +18,13 @@ try:
 except ImportError:
     google_search = None
 
-try:
-    import google.generativeai as genai
-except ImportError:
-    genai = None
-
 load_dotenv()
 
 API_KEY = os.getenv("GOOGLE_PLACES_API_KEY")
 
-# Gemini-oppsett
+# Gemini-oppsett (REST API direkte for å støtte referrer-begrensede nøkler)
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-gemini_model = None
-if GEMINI_API_KEY and genai:
-    genai.configure(api_key=GEMINI_API_KEY)
-    gemini_model = genai.GenerativeModel("gemini-2.0-flash")
+GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 
 API_URL = "https://places.googleapis.com/v1/places:searchText"
 
@@ -90,7 +82,7 @@ CATALOG_DOMAINS = {
 def generate_info_text(place: dict, industry: str) -> str:
     """Generer 2 setninger om bedriften for cold-call-kontekst.
     Prøver Gemini først, faller tilbake til malbasert generering."""
-    if gemini_model:
+    if GEMINI_API_KEY:
         try:
             result = _generate_info_with_gemini(place, industry)
             if result:
@@ -109,14 +101,14 @@ def _generate_info_with_gemini(place: dict, industry: str) -> str:
     rating = place.get("rating", 0)
     review_count = place.get("userRatingCount", 0)
 
-    # Hent topp 2 nyttige anmeldelser (>20 tegn)
+    # Hent opptil 5 nyttige anmeldelser (>20 tegn) for å identifisere temaer
     reviews = place.get("reviews") or []
     review_texts = []
     for review in reviews:
         text = (review.get("text") or {}).get("text", "")
         if len(text) > 20:
-            review_texts.append(text[:200])
-        if len(review_texts) >= 2:
+            review_texts.append(text[:300])
+        if len(review_texts) >= 5:
             break
 
     context_parts = [f"Bedriftsnavn: {name}"]
@@ -131,21 +123,74 @@ def _generate_info_with_gemini(place: dict, industry: str) -> str:
     if editorial:
         context_parts.append(f"Redaksjonelt sammendrag: {editorial}")
     if review_texts:
-        context_parts.append(f"Kundeanmeldelser: {' | '.join(review_texts)}")
+        context_parts.append(f"Kundeanmeldelser:\n" + "\n".join(f"- {r}" for r in review_texts))
 
     context = "\n".join(context_parts)
 
+    # Tilpass instruksjon for setning 2 basert på om det finnes anmeldelser
+    if review_texts:
+        sentence2_instruction = (
+            "Setning 2: Oppsummer hva kundene sier basert på anmeldelsene.\n"
+        )
+    elif review_count > 0:
+        sentence2_instruction = (
+            "Setning 2: Beskriv bedriftens omdømme basert på rating og antall anmeldelser.\n"
+        )
+    else:
+        sentence2_instruction = (
+            "Setning 2: Beskriv kort hva slags tjenester bedriften tilbyr.\n"
+            "IKKE nevn kundeanmeldelser, omdømme eller tilbakemeldinger når det ikke finnes anmeldelser.\n"
+        )
+
     prompt = (
-        "Skriv 2 korte introduserende setninger på norsk om denne bedriften. "
-        "Setningene skal gi en selger kontekst ved cold calling. "
-        "Fokuser på hva bedriften driver med og hvor den holder til. "
-        "Ikke nevn anmeldelser, rating eller stjerner direkte. "
-        "Ikke bruk anførselstegn. Svar kun med de 2 setningene.\n\n"
-        f"{context}"
+        "Du er en assistent som skriver korte bedriftsbeskrivelser for selgere som skal ringe kalde leads.\n"
+        "Skriv NØYAKTIG 2 setninger på norsk basert KUN på informasjonen nedenfor.\n\n"
+        "Setning 1: Beskriv hva bedriften driver med og hvor den holder til.\n"
+        f"{sentence2_instruction}\n"
+        "VIKTIGE REGLER:\n"
+        "- IKKE dikt opp informasjon som ikke står i konteksten (alder, omsetning, antall ansatte osv.)\n"
+        "- IKKE bruk anførselstegn eller sitér anmeldelser direkte\n"
+        "- Hvis det finnes kundeanmeldelser KAN du oppsummere temaer (f.eks. «kundene fremhever god service»)\n"
+        "- Hvis det IKKE finnes anmeldelser, IKKE skriv om kundeerfaringer eller omdømme\n"
+        "- Skriv i tredjeperson (f.eks. «de tilbyr», IKKE «vi tilbyr»)\n"
+        "- Svar KUN med de 2 setningene, ingen annen tekst\n\n"
+        f"KONTEKST:\n{context}"
     )
 
-    response = gemini_model.generate_content(prompt)
-    text = response.text.strip()
+    # Retry med eksponentiell backoff for rate limiting (429)
+    max_retries = 3
+    delay = 1.0
+    for attempt in range(max_retries + 1):
+        time.sleep(delay)
+        resp = requests.post(
+            GEMINI_API_URL,
+            headers={
+                "Content-Type": "application/json",
+                "x-goog-api-key": GEMINI_API_KEY,
+                "Referer": "http://localhost:5175",
+            },
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+            },
+        )
+        if resp.status_code == 429 and attempt < max_retries:
+            delay = min(delay * 2, 16)
+            print(f"    Gemini rate limit, venter {delay}s (forsøk {attempt + 1}/{max_retries})...")
+            continue
+        break
+
+    if resp.status_code != 200:
+        print(f"    Gemini API error {resp.status_code}: {resp.text[:200]}")
+        return ""
+
+    data = resp.json()
+    text = (
+        data.get("candidates", [{}])[0]
+        .get("content", {})
+        .get("parts", [{}])[0]
+        .get("text", "")
+        .strip()
+    )
 
     if len(text) < 10 or len(text) > 500:
         return ""
@@ -154,36 +199,29 @@ def _generate_info_with_gemini(place: dict, industry: str) -> str:
 
 def _generate_info_template(place: dict, industry: str) -> str:
     """Malbasert reserve for generering av bedriftsinformasjon."""
-    # Setning 1: Hva bedriften er
+    name = (place.get("displayName") or {}).get("text", "")
+    # Setning 1: Hva bedriften er (bruk norsk bransje fremfor engelsk type)
     editorial = (place.get("editorialSummary") or {}).get("text", "")
     if editorial:
         sentence1 = editorial.rstrip(".")
+    elif industry and industry != "Annet":
+        sentence1 = f"{name} er en {industry.lower()}-bedrift i Asker"
     else:
         primary_type = (place.get("primaryTypeDisplayName") or {}).get("text", "")
         if primary_type:
-            sentence1 = f"{primary_type} i Asker"
+            sentence1 = f"{name} er en bedrift i Asker ({primary_type})"
         else:
-            sentence1 = f"{industry} i Asker"
+            sentence1 = f"{name} er en bedrift i Asker"
 
-    # Setning 2: Kundesignal (beste anmeldelsesutdrag eller vurderingssammendrag)
-    reviews = place.get("reviews") or []
-    best_snippet = ""
-    for review in reviews:
-        text = (review.get("text") or {}).get("text", "")
-        if text and len(text) > len(best_snippet):
-            best_snippet = text
-
-    if best_snippet:
-        if len(best_snippet) > 120:
-            best_snippet = best_snippet[:117].rstrip() + "..."
-        sentence2 = f'"{best_snippet}"'
+    # Setning 2: Omdømme basert på rating og antall anmeldelser
+    rating = place.get("rating", 0)
+    review_count = place.get("userRatingCount", 0)
+    if rating >= 4.0 and review_count > 0:
+        sentence2 = f"Bedriften har et godt omdømme med {rating} av 5 stjerner basert på {review_count} anmeldelser"
+    elif rating and review_count:
+        sentence2 = f"Har {rating} av 5 stjerner basert på {review_count} vurderinger på Google"
     else:
-        rating = place.get("rating", 0)
-        review_count = place.get("userRatingCount", 0)
-        if rating and review_count:
-            sentence2 = f"Har {rating} stjerner basert på {review_count} anmeldelser"
-        else:
-            sentence2 = ""
+        sentence2 = ""
 
     if sentence2:
         return f"{sentence1}. {sentence2}."
