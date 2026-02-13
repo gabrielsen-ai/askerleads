@@ -13,6 +13,8 @@ from urllib.parse import urlparse
 import requests
 from dotenv import load_dotenv
 
+from email_enrichment import enrich_emails
+
 try:
     from googlesearch import search as google_search
 except ImportError:
@@ -340,6 +342,7 @@ def fetch_places() -> list[dict]:
                         "userRatingCount": review_count,
                         "industry": industry,
                         "phone": p.get("nationalPhoneNumber", ""),
+                        "email": p.get("emailAddress", ""),
                         "hasWebsite": has_website,
                         "potentialScore": calculate_score(rating, review_count, has_website),
                         "info": generate_info_text(p, industry),
@@ -456,10 +459,14 @@ def main():
 
     print(f"\nVerifisering fullført: {len(verified)}/{len(leads)} leads beholdt")
 
-    # Steg 3: Sorter etter vurdering/anmeldelser
+    # Steg 3: E-postberikelse
+    print(f"\nSteg 3: Søker etter e-post for {len(verified)} verifiserte leads...")
+    enrich_emails(verified, "Bærum", GEMINI_API_KEY)
+
+    # Steg 4: Sorter etter vurdering/anmeldelser
     verified.sort(key=lambda l: (-l["rating"], -l["userRatingCount"]))
 
-    # Steg 4: Skriv resultater
+    # Steg 5: Skriv resultater
     write_results(verified)
 
 

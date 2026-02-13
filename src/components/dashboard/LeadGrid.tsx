@@ -3,9 +3,10 @@ import LeadCard from "./LeadCard";
 
 interface Props {
   leads: Lead[];
+  onChangeStatus: (id: string, status: "accepted" | "rejected") => void;
 }
 
-export default function LeadGrid({ leads }: Props) {
+export default function LeadGrid({ leads, onChangeStatus }: Props) {
   if (leads.length === 0) {
     return (
       <div className="rounded-xl border border-slate-200 bg-white py-12 text-center text-slate-400">
@@ -24,15 +25,22 @@ export default function LeadGrid({ leads }: Props) {
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Bedrift</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Adresse</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Telefon</th>
+              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">E-post</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Rating</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Anmeldelser</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Nettside</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Info</th>
+              <th className="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide">Status</th>
             </tr>
           </thead>
           <tbody className="text-slate-700">
             {leads.map((lead) => (
-              <LeadCard key={lead.id} lead={lead} />
+              <LeadCard
+                key={lead.id}
+                lead={lead}
+                onAccept={() => onChangeStatus(lead.id, "accepted")}
+                onReject={() => onChangeStatus(lead.id, "rejected")}
+              />
             ))}
           </tbody>
         </table>

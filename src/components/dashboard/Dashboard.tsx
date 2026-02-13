@@ -4,6 +4,7 @@ import { filterLeads, sortLeadsByScore } from "../../services/leadService";
 import SearchPanel from "../search/SearchPanel";
 import StatsBar from "./StatsBar";
 import LeadGrid from "./LeadGrid";
+import { supabase } from "../../lib/supabaseClient";
 
 interface Props {
   leads: Lead[];
@@ -12,11 +13,45 @@ interface Props {
 export default function Dashboard({ leads }: Props) {
   const [search, setSearch] = useState("");
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
+  const [statusFilter, setStatusFilter] = useState<"unused" | "accepted" | "rejected">("unused");
 
   const filtered = useMemo(
     () => sortLeadsByScore(filterLeads(leads, selectedIndustries, search)),
     [leads, selectedIndustries, search]
   );
+
+  const visibleLeads = useMemo(
+    () =>
+      filtered.filter((lead) => {
+        const status = lead.status === "pending" || !lead.status ? "unused" : lead.status;
+        return status === statusFilter;
+      }),
+    [filtered, statusFilter]
+  );
+
+  const handleStatusChange = async (id: string, status: "accepted" | "rejected") => {
+    try {
+      const { error } = await supabase
+        .from("leads")
+        .update({
+          status,
+          last_called_at: new Date().toISOString(),
+        })
+        .eq("id", id);
+
+      if (error) {
+        console.error("Feil ved oppdatering av lead:", error);
+        alert("Kunne ikke oppdatere lead. Prøv igjen.");
+      } else {
+        // Oppdater lokal state for umiddelbar UI-respons
+        // (leads vil også bli hentet på nytt ved neste refresh)
+        window.location.reload();
+      }
+    } catch (err) {
+      console.error("Feil ved oppdatering av lead:", err);
+      alert("Kunne ikke oppdatere lead. Prøv igjen.");
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -27,7 +62,45 @@ export default function Dashboard({ leads }: Props) {
         onIndustriesChange={setSelectedIndustries}
       />
       <StatsBar leads={filtered} />
-      <LeadGrid leads={filtered} />
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={() => setStatusFilter("unused")}
+          className={`px-3 py-1.5 rounded-full text-xs font-medium border ${
+            statusFilter === "unused"
+              ? "bg-slate-900 text-white border-slate-900"
+              : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+          }`}
+        >
+          ubrukt
+        </button>
+        <button
+          type="button"
+          onClick={() => setStatusFilter("accepted")}
+          className={`px-3 py-1.5 rounded-full text-xs font-medium border ${
+            statusFilter === "accepted"
+              ? "bg-emerald-600 text-white border-emerald-600"
+              : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+          }`}
+        >
+          godtatt
+        </button>
+        <button
+          type="button"
+          onClick={() => setStatusFilter("rejected")}
+          className={`px-3 py-1.5 rounded-full text-xs font-medium border ${
+            statusFilter === "rejected"
+              ? "bg-rose-600 text-white border-rose-600"
+              : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+          }`}
+        >
+          avslag
+        </button>
+      </div>
+      <LeadGrid
+        leads={visibleLeads}
+        onChangeStatus={handleStatusChange}
+      />
     </div>
   );
 }

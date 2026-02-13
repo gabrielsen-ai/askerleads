@@ -4,12 +4,13 @@
     "name": "Asker Bilverksted As",
     "address": "Eternitveien 45, 3470 Slemmestad, Norway",
     "rating": 5,
-    "userRatingCount": 43,
+    "userRatingCount": 44,
     "industry": "Bilverksted",
     "phone": "40 04 04 25",
+    "email": "post@lommedalenauto.no",
     "hasWebsite": false,
     "potentialScore": 79,
-    "info": "Asker Bilverksted As er en bilverksted-bedrift i Asker. Bedriften har et godt omdømme med 5 av 5 stjerner basert på 43 anmeldelser."
+    "info": "Asker Bilverksted As er et bilverksted som tilbyr reparasjon og vedlikehold av biler, lokalisert i Slemmestad. Kundene fremhever rask og god service, dyktige mekanikere og konkurransedyktige priser."
   },
   {
     "id": "ChIJNfu2iM8VQUYRlO9pFhrIscA",
@@ -19,9 +20,23 @@
     "userRatingCount": 30,
     "industry": "Frisør",
     "phone": "66 78 79 13",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 76,
-    "info": "Ditt Hår Frisør er en frisør-bedrift i Asker. Bedriften har et godt omdømme med 5 av 5 stjerner basert på 30 anmeldelser."
+    "info": "Ditt Hår Frisør er en frisørsalong som ligger i Morellveien i Asker. Kundene fremhever frisørens dyktighet, gode service, og evne til å lytte til deres ønsker."
+  },
+  {
+    "id": "ChIJiwCndzJBQUYRdg6ziOKJQiA",
+    "name": "Nærsnes Bakeri",
+    "address": "Sundbyveien 19B, 3478 Nærsnes, Norway",
+    "rating": 5,
+    "userRatingCount": 21,
+    "industry": "Bakeri",
+    "phone": "",
+    "email": "",
+    "hasWebsite": false,
+    "potentialScore": 74,
+    "info": "Nærsnes Bakeri er et bakeri som holder til på Nærsnes. Kundene fremhever fantastiske bakevarer av høy kvalitet, god service og er fornøyde med bestillingskaker."
   },
   {
     "id": "ChIJXS0re69tQUYRV-UoEcOZ9VM",
@@ -31,9 +46,10 @@
     "userRatingCount": 14,
     "industry": "Maler",
     "phone": "93 98 90 52",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 73,
-    "info": "Renovering & Farge AS er en malerbedrift lokalisert i Nesøya. Kundene fremhever grundig arbeid, høy kvalitet, og Davids profesjonalitet og pålitelighet."
+    "info": "Renovering & Farge AS er en malerbedrift lokalisert på Nesøya. Kundene fremhever grundig arbeid av høy kvalitet, samt at David er profesjonell, pålitelig og dyktig."
   },
   {
     "id": "ChIJdSKYg4o_QUYRUUdS3ztUUvE",
@@ -43,9 +59,10 @@
     "userRatingCount": 13,
     "industry": "Rørlegger",
     "phone": "41 34 34 36",
+    "email": "post@arror.no",
     "hasWebsite": false,
     "potentialScore": 73,
-    "info": "Røyken Rørlegger AS er en rørleggerbedrift lokalisert i Røyken.\nKunder fremhever rask respons, effektivt arbeid, god service og dyktige rørleggere."
+    "info": "Røyken Rørlegger AS er en rørleggerbedrift lokalisert i Røyken. Kundene fremhever rask respons, effektivt arbeid og hyggelig service."
   },
   {
     "id": "ChIJIa04x2U_QUYRXSRnvoCMPBQ",
@@ -55,9 +72,10 @@
     "userRatingCount": 5,
     "industry": "Rørlegger",
     "phone": "93 85 84 05",
+    "email": "omegavvs@outlook.com",
     "hasWebsite": false,
     "potentialScore": 71,
-    "info": "Omega VVS Berger er en rørlegger som holder til i Slemmestad. Kundene er svært fornøyde med selskapet, og fremhever punktlighet, rask service og god verdi for pengene."
+    "info": "Omega VVS Berger er en rørlegger som holder til i Slemmestad. Kundene fremhever at de er punktlige, raske og leverer god kvalitet til en god pris."
   },
   {
     "id": "ChIJvxgaqXMUQUYRh2gwFkkGLa0",
@@ -67,9 +85,10 @@
     "userRatingCount": 3,
     "industry": "Annet",
     "phone": "66 98 04 00",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 71,
-    "info": "Hatlehol snekkerverksted er et snekkerverksted lokalisert på Slependen. Kundene berømmer bedriften for god service og dyktig håndverk."
+    "info": "Hatlehol snekkerverksted er et snekkerverksted lokalisert på Slependen. Kundene fremhever god service og dyktig håndverk."
   },
   {
     "id": "ChIJq6r2DVkUQUYRIDugcqwX2QA",
@@ -79,9 +98,10 @@
     "userRatingCount": 1,
     "industry": "Annet",
     "phone": "",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 70,
-    "info": "Comfort Asker er en skobutikk lokalisert på Hvalstad. De har en perfekt score basert på én anmeldelse."
+    "info": "Comfort Asker er en skobutikk lokalisert på Hvalstad. De har fått en rating på 5 av 5 stjerner basert på én anmeldelse."
   },
   {
     "id": "ChIJg6Rc9mUVQUYRsB5WaqzaPLE",
@@ -91,9 +111,10 @@
     "userRatingCount": 1,
     "industry": "Rørlegger",
     "phone": "66 98 70 40",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 70,
-    "info": "Tom Elnes Rørleggerforretning AS er en rørlegger-bedrift i Asker. Bedriften har et godt omdømme med 5 av 5 stjerner basert på 1 anmeldelser."
+    "info": "Tom Elnes Rørleggerforretning AS er en rørleggerbedrift lokalisert i Vollen. De har en perfekt score basert på én anmeldelse."
   },
   {
     "id": "ChIJA0cey2YVQUYRQ1G6oxTyGEI",
@@ -103,9 +124,23 @@
     "userRatingCount": 1,
     "industry": "Annet",
     "phone": "45 41 81 50",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 70,
-    "info": "Allproff AS er en entreprenør som holder til i Solbråveien i Asker. Kunder beskriver selskapet som seriøst og setter pris på tilbakemeldinger underveis i prosjektet."
+    "info": "Allproff AS er en entreprenør som holder til i Solbråveien i Asker. Ifølge en kunde er de seriøse og gir god tilbakemelding underveis i prosjektet."
+  },
+  {
+    "id": "ChIJAQBUJ08TQUYRnTVaBprffKM",
+    "name": "Asker Og Bærum Bygg As",
+    "address": "Blommenholmveien 5 C, 1365 Sandvika, Norway",
+    "rating": 5,
+    "userRatingCount": 1,
+    "industry": "Annet",
+    "phone": "",
+    "email": "post@mhus.no",
+    "hasWebsite": false,
+    "potentialScore": 70,
+    "info": "Asker Og Bærum Bygg As holder til i Sandvika. Selskapet har en rating på 5 av 5 basert på én anmeldelse."
   },
   {
     "id": "ChIJ8wDoUMsVQUYRclXhfDSMzUU",
@@ -115,9 +150,36 @@
     "userRatingCount": 1,
     "industry": "Annet",
     "phone": "93 80 31 70",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 70,
-    "info": "SUPER RENHOLD SERVICE AS er en bedrift i Asker. Bedriften har et godt omdømme med 5 av 5 stjerner basert på 1 anmeldelser."
+    "info": "SUPER RENHOLD SERVICE AS holder til i Asker og tilbyr renholdstjenester. Kundeanmeldelsen fremhever et godt vedlikeholdt og pent sted."
+  },
+  {
+    "id": "ChIJASaz9CYVQUYRi0PD2UWVljw",
+    "name": "Bloom Asker",
+    "address": "Fekjan 6, 1394 Nesbru, Norway",
+    "rating": 4.7,
+    "userRatingCount": 23,
+    "industry": "Blomsterbutikk",
+    "phone": "66 98 20 30",
+    "email": "post@bloom-asker.no",
+    "hasWebsite": false,
+    "potentialScore": 72,
+    "info": "Bloom Asker er en blomsterbutikk og florist som holder til på Nesbru. Kundene fremhever den gode og vennlige servicen, det store utvalget, og blomster av høy kvalitet."
+  },
+  {
+    "id": "ChIJo5hCH1kVQUYRLZBQCEhMJcI",
+    "name": "Asker Supermarked",
+    "address": "Bankveien 14, 1383 Asker, Norway",
+    "rating": 4.4,
+    "userRatingCount": 203,
+    "industry": "Annet",
+    "phone": "46 81 45 18",
+    "email": "joker.asker.stasjon@joker.no",
+    "hasWebsite": false,
+    "potentialScore": 94,
+    "info": "Asker Supermarked er en matbutikk lokalisert i Bankveien 14 i Asker. Kundeanmeldelser indikerer varierende erfaringer knyttet til kvaliteten på kjøttprodukter, utgåtte varer og potensielt uprofesjonell oppførsel fra ansatte."
   },
   {
     "id": "ChIJgb1sT4kUQUYRg6j8vUNhofM",
@@ -127,9 +189,10 @@
     "userRatingCount": 7,
     "industry": "Elektriker",
     "phone": "66 85 98 00",
+    "email": "post@protechelektro.no",
     "hasWebsite": false,
     "potentialScore": 65,
-    "info": "Protech elektro AS er en elektriker som holder til på Hvalstad. Kunder fremhever rask og god service, punktlighet og evnen til å finne smarte løsninger."
+    "info": "Protech elektro AS er en elektriker som holder til på Hvalstad. Kundene fremhever rask og god service, samt evnen til å finne smarte løsninger."
   },
   {
     "id": "ChIJO_K9V8QVQUYRAZLFkJFC1YM",
@@ -139,9 +202,10 @@
     "userRatingCount": 10,
     "industry": "Annet",
     "phone": "66 76 53 33",
+    "email": "mail@tomrer-thomas.no",
     "hasWebsite": false,
     "potentialScore": 64,
-    "info": "Saga Regnskap Asker og Bærum AS er et regnskapskontor lokalisert i Asker. Kunder setter pris på selskapets profesjonalitet, effektivitet og hjelpsomhet, spesielt fremheves god service og dyktige regnskapsførere."
+    "info": "Saga Regnskap Asker og Bærum AS tilbyr regnskapstjenester og holder til i Asker. Kundene fremhever selskapets profesjonalitet, effektivitet og gode service."
   },
   {
     "id": "ChIJT6f9uLYVQUYRnCG_-Cq2MZU",
@@ -151,45 +215,10 @@
     "userRatingCount": 16,
     "industry": "Bilverksted",
     "phone": "40 41 81 91",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 60,
-    "info": "Trekanten bilpleie DA er et bilverksted og en butikk for bildeler lokalisert i Asker. Kundeanmeldelser indikerer varierende erfaringer, der noen fremhever gode priser og erfarne arbeidere, mens andre rapporterer om problemer med kommunikasjon, prisavvik og skader under installasjon."
-  },
-  {
-    "id": "ChIJrUnWCXETQUYR3ASMIqTqr7E",
-    "name": "Asker og Bærum Bilomsetning Rune Michael Eriksen",
-    "address": "Dr. Schmidts vei 3B, 1346 Gjettum, Norway",
-    "rating": 3,
-    "userRatingCount": 1,
-    "industry": "Bilverksted",
-    "phone": "93 29 09 65",
-    "hasWebsite": false,
-    "potentialScore": 50,
-    "info": "Asker og Bærum Bilomsetning Rune Michael Eriksen er en bilverksted-bedrift i Asker. Har 3 av 5 stjerner basert på 1 vurderinger på Google."
-  },
-  {
-    "id": "ChIJi7SV7pQVQUYRLe7gaSVPmu8",
-    "name": "Cutting Mood",
-    "address": "Brendsrudveien 22, 1383 Asker, Norway",
-    "rating": 0,
-    "userRatingCount": 0,
-    "industry": "Frisør",
-    "phone": "93 99 95 55",
-    "hasWebsite": false,
-    "potentialScore": 20,
-    "info": "Cutting Mood er en frisørsalong som holder til i Brendsrudveien i Asker. De tilbyr tjenester innen hårpleie."
-  },
-  {
-    "id": "ChIJE9oY3K4VQUYR1MruEMKLFvU",
-    "name": "Asker varme og sanitær AS",
-    "address": "Båstadveien 69B, 1387 Asker, Norway",
-    "rating": 0,
-    "userRatingCount": 0,
-    "industry": "Rørlegger",
-    "phone": "66 79 40 52",
-    "hasWebsite": false,
-    "potentialScore": 20,
-    "info": "Asker varme og sanitær AS er en rørleggerbedrift lokalisert i Asker. Vi tilbyr tjenester innen varme- og sanitæranlegg."
+    "info": "Trekanten bilpleie DA er et bilverksted og en butikk for bildeler, lokalisert i Asker. Kundeanmeldelser indikerer varierende erfaringer med pris og service, inkludert problemer med levering og installasjon."
   },
   {
     "id": "ChIJ2XeTYpwVQUYRxwKrDhBueIs",
@@ -199,21 +228,10 @@
     "userRatingCount": 0,
     "industry": "Elektriker",
     "phone": "67 79 08 83",
+    "email": "post@buskerudelektro.no",
     "hasWebsite": false,
     "potentialScore": 20,
-    "info": "Asker Elektro AS er en elektriker som holder til i Vettre. De tilbyr elektrikertjenester i området."
-  },
-  {
-    "id": "ChIJ5eimCL4VQUYRVOS6skn0CvE",
-    "name": "Tømrer & Snekker P Piasecki",
-    "address": "Huldreveien 39, 1388 Asker, Norway",
-    "rating": 0,
-    "userRatingCount": 0,
-    "industry": "Annet",
-    "phone": "40 34 16 31",
-    "hasWebsite": false,
-    "potentialScore": 20,
-    "info": "Tømrer & Snekker P Piasecki er en bedrift i Asker."
+    "info": "Asker Elektro AS er en elektriker som holder til i Vettre. De tilbyr tjenester innenfor elektrikerfaget."
   },
   {
     "id": "ChIJz6rcneA_QUYRmUCw458lGPI",
@@ -223,9 +241,10 @@
     "userRatingCount": 0,
     "industry": "Maler",
     "phone": "90 82 19 52",
+    "email": "vikingasb@hotmail.com",
     "hasWebsite": false,
     "potentialScore": 20,
-    "info": "Bjerkaas Maler Service AS er et malerfirma lokalisert i Vollen. Vi tilbyr malertjenester."
+    "info": "Bjerkaas Maler Service AS er et malerfirma lokalisert i Vollen. De tilbyr tjenester innen malerfaget."
   },
   {
     "id": "ChIJURDI3fkUQUYR9DoLItVSw0I",
@@ -235,9 +254,10 @@
     "userRatingCount": 0,
     "industry": "Annet",
     "phone": "92 88 66 66",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
-    "info": "Best Renhold AS er et renholdsfirma lokalisert på Hvalstad. De tilbyr renholdstjenester."
+    "info": "Best Renhold AS er lokalisert på Hvalstad. De tilbyr renholdstjenester."
   },
   {
     "id": "ChIJP41GA7ITQUYRfk3uYQj2h_0",
@@ -247,8 +267,22 @@
     "userRatingCount": 0,
     "industry": "Annet",
     "phone": "95 00 29 99",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
-    "info": "Asker & Bærum renhold Belkize Dedushaj er et firma som holder til på Rykkinn. De tilbyr renholdstjenester."
+    "info": "Asker & Bærum renhold Belkize Dedushaj er et firma lokalisert på Rykkinn. De tilbyr renholdstjenester."
+  },
+  {
+    "id": "ChIJS3mIHLcVQUYRoNZ7Eh-EfjA",
+    "name": "Bakeriet Asker",
+    "address": "Meierisvingen 2, 1383 Asker, Norway",
+    "rating": 0,
+    "userRatingCount": 0,
+    "industry": "Bakeri",
+    "phone": "",
+    "email": "bestilling@fardals.no",
+    "hasWebsite": false,
+    "potentialScore": 20,
+    "info": "Bakeriet Asker er et bakeri som ligger i Asker. De tilbyr et utvalg av bakevarer."
   }
 ]

@@ -1,5 +1,31 @@
 [
   {
+    "id": "ChIJ82dYfHUTQUYRLNh2p6O-Ovk",
+    "name": "Multi Bil AS avd. Rud/Hauger",
+    "address": "Olav Ingstads vei 7B, 1351 Rud, Norway",
+    "rating": 5,
+    "userRatingCount": 1,
+    "industry": "Bilverksted",
+    "phone": "67 13 75 00",
+    "email": "",
+    "hasWebsite": false,
+    "potentialScore": 70,
+    "info": "Multi Bil AS avd. Rud/Hauger er et bilverksted lokalisert på Rud. De har en rating på 5 av 5 basert på én anmeldelse."
+  },
+  {
+    "id": "ChIJG3akGkYTQUYR0olztGeteuY",
+    "name": "Bekkestua Rørleggerforretning",
+    "address": "Engerjordet 25, 1365 Blommenholm, Norway",
+    "rating": 5,
+    "userRatingCount": 1,
+    "industry": "Rørlegger",
+    "phone": "92 66 18 96",
+    "email": "",
+    "hasWebsite": false,
+    "potentialScore": 70,
+    "info": "Bekkestua Rørleggerforretning er en rørlegger som holder til i Blommenholm. Kunden fremhever at Harald er kunnskapsrik og løsningsorientert."
+  },
+  {
     "id": "ChIJG6t0L_cSQUYRyWg-bcFJXUw",
     "name": "Snekker Hatlebakk",
     "address": "Linderudveien 78, 1353 Bærums Verk, Norway",
@@ -7,9 +33,10 @@
     "userRatingCount": 1,
     "industry": "Annet",
     "phone": "",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 70,
-    "info": "Snekker Hatlebakk er en bedrift i Bærum (Point of interest). Bedriften har et godt omdømme med 5 av 5 stjerner basert på 1 anmeldelser."
+    "info": "Snekker Hatlebakk er en bedrift lokalisert på Bærums Verk. Ifølge en kundeanmeldelse er de dyktige, løsningsorienterte og leverer kvalitet."
   },
   {
     "id": "ChIJAQBUJ08TQUYRnTVaBprffKM",
@@ -19,9 +46,23 @@
     "userRatingCount": 1,
     "industry": "Annet",
     "phone": "",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 70,
-    "info": "Asker Og Bærum Bygg As holder til i Sandvika. De har en rating på 5 av 5 basert på én anmeldelse."
+    "info": "Asker Og Bærum Bygg As holder til i Sandvika. Selskapet har en rating på 5 av 5 basert på én anmeldelse."
+  },
+  {
+    "id": "ChIJycGIgEMTQUYR9dGX_yPknKc",
+    "name": "TØMRER STAMBULOV",
+    "address": "Hellesvingen 34, 1336 Sandvika, Norway",
+    "rating": 5,
+    "userRatingCount": 1,
+    "industry": "Maler",
+    "phone": "93 99 72 22",
+    "email": "",
+    "hasWebsite": false,
+    "potentialScore": 70,
+    "info": "TØMRER STAMBULOV er en maler-bedrift i Bærum. Bedriften har et godt omdømme med 5 av 5 stjerner basert på 1 anmeldelser."
   },
   {
     "id": "ChIJo94Pq7dsQUYRRVNwZQ_56-k",
@@ -31,9 +72,10 @@
     "userRatingCount": 8,
     "industry": "Frisør",
     "phone": "47 65 96 80",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 71,
-    "info": "Bærum Hairdressers er en frisørsalong lokalisert i Høvik. Kunder setter pris på de dyktige og vennlige frisørene som gir gode råd, og mange er svært fornøyde med salongen."
+    "info": "Bærum Hairdressers er en frisørsalong lokalisert i Høvik. Kunder fremhever dyktige og vennlige frisører, samt gode anbefalinger."
   },
   {
     "id": "ChIJ0ZUmli8TQUYR_8oMsekqtKQ",
@@ -43,9 +85,10 @@
     "userRatingCount": 6,
     "industry": "Annet",
     "phone": "98 63 15 41",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 69,
-    "info": "PS Cleaning and Renovation AS er en bedrift i Bærum. Bedriften har et godt omdømme med 4.8 av 5 stjerner basert på 6 anmeldelser."
+    "info": "PS Cleaning and Renovation AS holder til på Haslum og tilbyr rengjørings- og renoveringstjenester. Kundene fremhever selskapets punktlighet, profesjonalitet og gode kvalitet."
   },
   {
     "id": "ChIJ1xRRKpgTQUYR6Wr1LbCcCks",
@@ -55,9 +98,10 @@
     "userRatingCount": 2,
     "industry": "Rørlegger",
     "phone": "67 13 80 90",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 65,
-    "info": "Vøyenenga Pipe AS er en rørlegger-bedrift i Bærum. Bedriften har et godt omdømme med 4.5 av 5 stjerner basert på 2 anmeldelser."
+    "info": "Vøyenenga Pipe AS er en rørleggerbedrift lokalisert på Vøyenenga. Kundene beskriver dem som hyggelige og fremhever god service."
   },
   {
     "id": "ChIJoS72058TQUYRoABnUGnACwI",
@@ -67,9 +111,10 @@
     "userRatingCount": 28,
     "industry": "Bilverksted",
     "phone": "95 52 11 29",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 70,
-    "info": "Auto-Rep AS er en bilverksted-bedrift i Bærum. Bedriften har et godt omdømme med 4.4 av 5 stjerner basert på 28 anmeldelser."
+    "info": "Auto-Rep AS er et bilverksted som tilbyr reparasjon og vedlikehold av biler, lokalisert på Rud. Kundeanmeldelser indikerer varierende opplevelser, der noen fremhever god service og rask respons, mens andre rapporterer om manglende hjelp og avvisning av oppdrag."
   },
   {
     "id": "ChIJmTv8yC4TQUYReNLUTwoE1X8",
@@ -79,9 +124,10 @@
     "userRatingCount": 8,
     "industry": "Elektriker",
     "phone": "67 53 54 11",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 65,
-    "info": "Nils Kristoffersen AS er en elektriker-bedrift i Bærum. Bedriften har et godt omdømme med 4.3 av 5 stjerner basert på 8 anmeldelser."
+    "info": "Nils Kristoffersen AS er en elektriker som holder til på Haslum. Kundene fremhever god service, effektivt arbeid og pålitelighet, men noen mener at bemanningen kan være for høy for enkelte oppdrag."
   },
   {
     "id": "ChIJecOn_LoTQUYREPnqgd7Ia40",
@@ -91,9 +137,10 @@
     "userRatingCount": 3,
     "industry": "Elektriker",
     "phone": "91 11 13 01",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 64,
-    "info": "Bærum ElektroPartner AS er en elektriker som holder til på Rykkinn. De har en rating på 4.3 av 5 basert på tre anmeldelser."
+    "info": "Bærum ElektroPartner AS er en elektriker som holder til på Rykkinn. Med en rating på 4.3 basert på tre anmeldelser, ser de ut til å ha etablert seg i lokalmiljøet."
   },
   {
     "id": "ChIJO_K9V8QVQUYRAZLFkJFC1YM",
@@ -103,9 +150,10 @@
     "userRatingCount": 10,
     "industry": "Annet",
     "phone": "66 76 53 33",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 64,
-    "info": "Saga Regnskap Asker og Bærum AS tilbyr regnskapstjenester fra deres kontor i Asker. Kunder beskriver dem som profesjonelle, effektive og hjelpsomme, spesielt fornøyd med deres tilgjengelighet og serviceinnstilling."
+    "info": "Saga Regnskap Asker og Bærum AS er et regnskapskontor lokalisert i Asker. Kundene fremhever selskapets profesjonalitet, effektivitet og gode service."
   },
   {
     "id": "ChIJXXsE8rATQUYRBdV-wbIL3bM",
@@ -115,9 +163,10 @@
     "userRatingCount": 17,
     "industry": "Maler",
     "phone": "48 50 70 40",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 64,
-    "info": "Optimal Service AS holder til i Sandvika og tilbyr tjenester innen flytting, rengjøring, flyttevask, trappevask, kontorflytting, tømming av dødsbo og søppeltaxi. Kundeanmeldelsene er blandet, med noen som fremhever punktlighet, fleksibilitet og grundighet, mens andre er misfornøyde med utførelsen og manglende betaling for utført arbeid."
+    "info": "Optimal Service AS holder til i Sandvika og tilbyr tjenester innen flytting, rengjøring, flyttevask, trappevask, kontorflytting, tømming av dødsbo og søppeltaxi. Kundeanmeldelsene er blandede, hvor noen fremhever punktlighet, fleksibilitet og god service, mens andre rapporterer om manglende betaling til samarbeidspartnere og mangler i utførelsen av rengjøringsarbeidet."
   },
   {
     "id": "ChIJL7ZMF6kTQUYRIlsTI7E33mw",
@@ -127,9 +176,10 @@
     "userRatingCount": 13,
     "industry": "Bilverksted",
     "phone": "67 13 41 90",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 61,
-    "info": "Rykkinn bilpleie AS er en bilverksted-bedrift i Bærum. Har 3.8 av 5 stjerner basert på 13 vurderinger på Google."
+    "info": "Rykkinn bilpleie AS er et bilverksted som tilbyr bilvask og dekkhotell på Rykkinn. Kunder fremhever rask og effektiv service, samt at de er fornøyde med prisene."
   },
   {
     "id": "ChIJ_yU1cHUTQUYRyM0YQFq2MqM",
@@ -139,6 +189,7 @@
     "userRatingCount": 0,
     "industry": "Bilverksted",
     "phone": "67 13 82 01",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
     "info": "Bærum Bilglass & bilpleie er en bilverksted-bedrift i Bærum."
@@ -151,9 +202,23 @@
     "userRatingCount": 0,
     "industry": "Bilverksted",
     "phone": "95 95 22 26",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
-    "info": "Vika Bilvask og Bilpleie er en bilverksted-bedrift i Bærum."
+    "info": "Vika Bilvask og Bilpleie er et bilverksted som holder til på Haslum. De tilbyr bilvask og bilpleietjenester."
+  },
+  {
+    "id": "ChIJQ2I7NlsSQUYREVxVVxc91d4",
+    "name": "Lommedalen bilpleie og dekk Karwan Saleh Hassan",
+    "address": "Skarvaveien 20, 1350 Lommedalen, Norway",
+    "rating": 0,
+    "userRatingCount": 0,
+    "industry": "Bilverksted",
+    "phone": "40 22 09 00",
+    "email": "",
+    "hasWebsite": false,
+    "potentialScore": 20,
+    "info": "Lommedalen bilpleie og dekk Karwan Saleh Hassan er et bilverksted lokalisert i Lommedalen. De tilbyr tjenester innen bilreparasjon og vedlikehold."
   },
   {
     "id": "ChIJ2Sf5d8YTQUYRfCzpGznd4GA",
@@ -163,21 +228,10 @@
     "userRatingCount": 0,
     "industry": "Annet",
     "phone": "95 42 91 41",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
-    "info": "Snekkern Fra Verket AS er en bedrift i Bærum (General Contractor)."
-  },
-  {
-    "id": "ChIJbxm6IkkTQUYRh0jrVLZ0RWg",
-    "name": "TØMRERMESTER EIRIK AMUNDSEN AS",
-    "address": "Grinibråten 8C, 1339 Vøyenenga, Norway",
-    "rating": 0,
-    "userRatingCount": 0,
-    "industry": "Annet",
-    "phone": "45 25 53 09",
-    "hasWebsite": false,
-    "potentialScore": 20,
-    "info": "Tømrermester Eirik Amundsen AS er lokalisert på Vøyenenga. De tilbyr tjenester innen tømrerfaget."
+    "info": "Snekkern Fra Verket AS er en entreprenør som holder til på Bærums Verk. De tilbyr tjenester innen bygg og anlegg."
   },
   {
     "id": "ChIJy4koRx8TQUYRKPzhT2YOhYs",
@@ -187,21 +241,23 @@
     "userRatingCount": 0,
     "industry": "Annet",
     "phone": "46 83 88 88",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
     "info": "Bærum Bygg og Graveservice AS holder til på Rykkinn. De tilbyr bygg- og graveservice."
   },
   {
-    "id": "ChIJxft979oTQUYRyswSNtFWhg0",
-    "name": "Håndverk Hamakhan",
-    "address": "Nedre Toppenhaug 17, 1353 Bærums Verk, Norway",
+    "id": "ChIJbxm6IkkTQUYRh0jrVLZ0RWg",
+    "name": "TØMRERMESTER EIRIK AMUNDSEN AS",
+    "address": "Grinibråten 8C, 1339 Vøyenenga, Norway",
     "rating": 0,
     "userRatingCount": 0,
-    "industry": "Maler",
-    "phone": "92 05 42 83",
+    "industry": "Annet",
+    "phone": "45 25 53 09",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
-    "info": "Håndverk Hamakhan er et malerfirma lokalisert på Bærums Verk. De tilbyr malertjenester."
+    "info": "Tømrermester Eirik Amundsen AS holder til på Vøyenenga. De tilbyr tjenester innen tømrerfaget."
   },
   {
     "id": "ChIJr7zrm2gTQUYRdf-fQoVsGvY",
@@ -211,6 +267,7 @@
     "userRatingCount": 0,
     "industry": "Annet",
     "phone": "91 14 85 21",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
     "info": "Belkisa Renhold holder til i Bærum. De tilbyr renholdstjenester."
@@ -223,6 +280,7 @@
     "userRatingCount": 0,
     "industry": "Annet",
     "phone": "95 00 29 99",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
     "info": "Asker & Bærum renhold Belkize Dedushaj er et firma lokalisert på Rykkinn. De tilbyr renholdstjenester."
@@ -235,6 +293,7 @@
     "userRatingCount": 0,
     "industry": "Annet",
     "phone": "41 30 83 90",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
     "info": "Ajour renhold AS er lokalisert på Bærums Verk. De tilbyr renholdstjenester."
@@ -247,9 +306,10 @@
     "userRatingCount": 0,
     "industry": "Annet",
     "phone": "99 88 95 41",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
-    "info": "Renhold Papa er en bedrift i Bærum."
+    "info": "Renhold Papa er et renholdsfirma lokalisert på Bærums Verk. De tilbyr renholdstjenester."
   },
   {
     "id": "ChIJSQG7wacVQUYRY008QCORHyU",
@@ -259,8 +319,9 @@
     "userRatingCount": 0,
     "industry": "Annet",
     "phone": "",
+    "email": "",
     "hasWebsite": false,
     "potentialScore": 20,
-    "info": "Oslo og Bærum Renhold og Flytting er et flyttebyrå lokalisert på Slependen. De tilbyr tjenester innen renhold og flytting."
+    "info": "Oslo og Bærum Renhold og Flytting er et flyttefirma lokalisert på Slependen. De tilbyr tjenester innen renhold og flytting."
   }
 ]

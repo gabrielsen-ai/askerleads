@@ -2,3 +2,5 @@ requests
 python-dotenv
 googlesearch-python
 google-generativeai
+beautifulsoup4
+supabase
