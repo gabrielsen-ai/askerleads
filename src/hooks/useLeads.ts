@@ -12,7 +12,7 @@ function mapDbLeadToLead(dbLead: any): Lead {
     userRatingCount: dbLead.user_rating_count,
     industry: dbLead.industry,
     phone: dbLead.phone,
-    email: dbLead.email,
+    sted: dbLead.email,
     hasWebsite: dbLead.has_website,
     potentialScore: dbLead.potential_score,
     info: dbLead.info,

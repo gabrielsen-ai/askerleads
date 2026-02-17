@@ -6,7 +6,7 @@ export interface Lead {
   userRatingCount: number;
   industry: string;
   phone: string;
-  email: string;
+  sted: string;
   hasWebsite: boolean;
   potentialScore: number;
   info: string;

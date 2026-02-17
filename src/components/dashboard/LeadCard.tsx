@@ -17,7 +17,7 @@ export default function LeadCard({ lead, onAccept, onReject }: Props) {
       </td>
       <td className="px-4 py-3 align-top text-slate-700">{displayAddress}</td>
       <td className="px-4 py-3 align-top text-slate-700">{lead.phone || "—"}</td>
-      <td className="px-4 py-3 align-top text-slate-700">{lead.email || "—"}</td>
+      <td className="px-4 py-3 align-top text-slate-700">{lead.sted || "—"}</td>
       <td className="px-4 py-3 align-top text-slate-700 font-mono">{formatRating(lead.rating)}</td>
       <td className="px-4 py-3 align-top text-slate-700 font-mono">{lead.userRatingCount}</td>
       <td className="px-4 py-3 align-top text-slate-700 font-mono">

@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
-Hent leads fra Google Places API (bedrifter uten nettside i Asker),
+Hent leads fra Google Places API (bedrifter uten nettside i Asker og Bærum),
 verifiser via Google-søk, og skriv resultater til public/leads.json.
+
+Svartelisting: Henter eksisterende lead-IDer fra Supabase og ekskluderer dem.
 """
 
 import json
@@ -13,7 +15,10 @@ from urllib.parse import urlparse
 import requests
 from dotenv import load_dotenv
 
-from email_enrichment import enrich_emails
+try:
+    from supabase import create_client
+except ImportError:
+    create_client = None
 
 try:
     from googlesearch import search as google_search
@@ -30,12 +35,16 @@ GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini
 
 API_URL = "https://places.googleapis.com/v1/places:searchText"
 
-ASKER_LOCATION = {"latitude": 59.9130155, "longitude": 10.5583176}
+# Lokasjoner
+LOCATIONS = {
+    "ASKER": {"latitude": 59.9130155, "longitude": 10.5583176},
+    "BÆRUM": {"latitude": 59.9186, "longitude": 10.5003},
+}
+
 INITIAL_RADIUS = 5000
 MAX_RESULTS_PER_QUERY = 20
 
-TARGET_RESULTS = 20  # fetch more, filter down after verification
-FINAL_RESULTS = None  # output all verified leads
+TARGET_RESULTS = 20  # per lokasjon
 MAX_PAGES = 10
 MAX_RADIUS = 50000
 RADIUS_GROWTH = 2
@@ -81,9 +90,26 @@ CATALOG_DOMAINS = {
 }
 
 
+def get_blacklisted_ids() -> set[str]:
+    """Hent alle eksisterende lead-IDer fra Supabase for svartelisting."""
+    url = os.getenv("SUPABASE_URL")
+    key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
+    if not url or not key or not create_client:
+        print("  Supabase ikke konfigurert – ingen svartelisting")
+        return set()
+    try:
+        client = create_client(url, key)
+        result = client.table("leads").select("id").execute()
+        ids = {row["id"] for row in (result.data or [])}
+        print(f"  Svarteliste: {len(ids)} eksisterende leads i Supabase")
+        return ids
+    except Exception as e:
+        print(f"  Kunne ikke hente svarteliste: {e}")
+        return set()
+
+
 def generate_info_text(place: dict, industry: str) -> str:
-    """Generer 2 setninger om bedriften for cold-call-kontekst.
-    Prøver Gemini først, faller tilbake til malbasert generering."""
+    """Generer 2 setninger om bedriften for cold-call-kontekst."""
     if GEMINI_API_KEY:
         try:
             result = _generate_info_with_gemini(place, industry)
@@ -103,7 +129,6 @@ def _generate_info_with_gemini(place: dict, industry: str) -> str:
     rating = place.get("rating", 0)
     review_count = place.get("userRatingCount", 0)
 
-    # Hent opptil 5 nyttige anmeldelser (>20 tegn) for å identifisere temaer
     reviews = place.get("reviews") or []
     review_texts = []
     for review in reviews:
@@ -129,7 +154,6 @@ def _generate_info_with_gemini(place: dict, industry: str) -> str:
 
     context = "\n".join(context_parts)
 
-    # Tilpass instruksjon for setning 2 basert på om det finnes anmeldelser
     if review_texts:
         sentence2_instruction = (
             "Setning 2: Oppsummer hva kundene sier basert på anmeldelsene.\n"
@@ -159,7 +183,6 @@ def _generate_info_with_gemini(place: dict, industry: str) -> str:
         f"KONTEKST:\n{context}"
     )
 
-    # Retry med eksponentiell backoff for rate limiting (429)
     max_retries = 3
     delay = 1.0
     for attempt in range(max_retries + 1):
@@ -202,20 +225,18 @@ def _generate_info_with_gemini(place: dict, industry: str) -> str:
 def _generate_info_template(place: dict, industry: str) -> str:
     """Malbasert reserve for generering av bedriftsinformasjon."""
     name = (place.get("displayName") or {}).get("text", "")
-    # Setning 1: Hva bedriften er (bruk norsk bransje fremfor engelsk type)
     editorial = (place.get("editorialSummary") or {}).get("text", "")
     if editorial:
         sentence1 = editorial.rstrip(".")
     elif industry and industry != "Annet":
-        sentence1 = f"{name} er en {industry.lower()}-bedrift i Asker"
+        sentence1 = f"{name} er en {industry.lower()}-bedrift"
     else:
         primary_type = (place.get("primaryTypeDisplayName") or {}).get("text", "")
         if primary_type:
-            sentence1 = f"{name} er en bedrift i Asker ({primary_type})"
+            sentence1 = f"{name} er en bedrift ({primary_type})"
         else:
-            sentence1 = f"{name} er en bedrift i Asker"
+            sentence1 = f"{name} er en lokal bedrift"
 
-    # Setning 2: Omdømme basert på rating og antall anmeldelser
     rating = place.get("rating", 0)
     review_count = place.get("userRatingCount", 0)
     if rating >= 4.0 and review_count > 0:
@@ -261,8 +282,8 @@ def is_valid_website(value) -> bool:
         return False
 
 
-def fetch_places() -> list[dict]:
-    """Hent bedrifter uten nettside fra Google Places API."""
+def fetch_places(sted: str, location: dict, blacklisted_ids: set[str]) -> list[dict]:
+    """Hent bedrifter uten nettside fra Google Places API for en gitt lokasjon."""
     if not API_KEY:
         print("FEIL: GOOGLE_PLACES_API_KEY ikke funnet i .env")
         return []
@@ -281,11 +302,11 @@ def fetch_places() -> list[dict]:
 
             while len(results) < TARGET_RESULTS and page_count < MAX_PAGES:
                 body = {
-                    "textQuery": f"{query} Asker",
+                    "textQuery": f"{query} {sted}",
                     "maxResultCount": MAX_RESULTS_PER_QUERY,
                     "locationBias": {
                         "circle": {
-                            "center": ASKER_LOCATION,
+                            "center": location,
                             "radius": radius,
                         }
                     },
@@ -316,16 +337,14 @@ def fetch_places() -> list[dict]:
                 page_count += 1
 
                 for i, p in enumerate(places):
-                    # Hopp over hvis har nettside
                     if is_valid_website(p.get("websiteUri")):
                         continue
-                    # Hopp over ekskluderte typer
                     types = p.get("types", [])
                     if not types or any(t in EXCLUDED_TYPES for t in types):
                         continue
 
                     place_id = p.get("id", f"goog-{radius}-{query}-{page_count}-{i}")
-                    if place_id in seen_ids:
+                    if place_id in seen_ids or place_id in blacklisted_ids:
                         continue
                     seen_ids.add(place_id)
 
@@ -342,7 +361,7 @@ def fetch_places() -> list[dict]:
                         "userRatingCount": review_count,
                         "industry": industry,
                         "phone": p.get("nationalPhoneNumber", ""),
-                        "email": p.get("emailAddress", ""),
+                        "sted": sted,
                         "hasWebsite": has_website,
                         "potentialScore": calculate_score(rating, review_count, has_website),
                         "info": generate_info_text(p, industry),
@@ -354,7 +373,7 @@ def fetch_places() -> list[dict]:
         if len(results) < TARGET_RESULTS:
             radius *= RADIUS_GROWTH
 
-    print(f"Fant {len(results)} leads uten nettside (Google Places)")
+    print(f"  Fant {len(results)} leads for {sted}")
     return results
 
 
@@ -395,14 +414,13 @@ def verify_no_website(lead: dict) -> bool:
     """
     Verifiser at en bedrift IKKE har en nettside.
     Returnerer True hvis ingen nettside ble funnet (behold leadet).
-    Returnerer False hvis en nettside ble funnet (fjern leadet).
     """
     name = lead["name"]
+    sted = lead.get("sted", "")
 
-    # Steg 1: Google-søk
     if google_search is not None:
         try:
-            query = f'"{name}" Asker'
+            query = f'"{name}" {sted}'
             search_results = list(google_search(query, num_results=5))
 
             for url in search_results:
@@ -414,7 +432,6 @@ def verify_no_website(lead: dict) -> bool:
                 if is_catalog_domain(domain):
                     continue
 
-                # Sjekk om bedriftsnavnet finnes i domenet
                 norm_name = normalize_name(name)
                 norm_domain = re.sub(r"[^a-z0-9]", "", domain.lower())
                 if norm_name and norm_name in norm_domain:
@@ -424,7 +441,6 @@ def verify_no_website(lead: dict) -> bool:
         except Exception as e:
             print(f"    Google-søk feilet for '{name}': {e}")
 
-    # Steg 2: Direkte domenegjetting
     if check_domain_guess(name):
         return False
 
@@ -432,36 +448,40 @@ def verify_no_website(lead: dict) -> bool:
 
 
 def main():
-    print("=== AskerLeads Generator ===\n")
+    print("=== AskerLeads Generator (Asker + Bærum) ===\n")
 
-    # Steg 1: Hent fra Google Places
-    print("Steg 1: Henter leads fra Google Places API...")
-    leads = fetch_places()
+    # Steg 1: Svartelisting fra Supabase
+    print("Steg 1: Henter svarteliste fra Supabase...")
+    blacklisted_ids = get_blacklisted_ids()
 
-    if not leads:
+    # Steg 2: Hent leads for alle lokasjoner
+    print(f"\nSteg 2: Henter leads fra Google Places API...")
+    all_leads = []
+    for sted, location in LOCATIONS.items():
+        print(f"\n  --- {sted} ---")
+        leads = fetch_places(sted, location, blacklisted_ids)
+        all_leads.extend(leads)
+
+    if not all_leads:
         print("Ingen leads funnet. Sjekk API-nøkkelen og prøv igjen.")
         write_results([])
         return
 
-    # Steg 2: Nettside-verifisering
-    print(f"\nSteg 2: Verifiserer at {len(leads)} leads ikke har nettside...")
+    # Steg 3: Nettside-verifisering
+    print(f"\nSteg 3: Verifiserer at {len(all_leads)} leads ikke har nettside...")
     verified = []
-    for i, lead in enumerate(leads):
-        print(f"  [{i+1}/{len(leads)}] Sjekker: {lead['name']}")
+    for i, lead in enumerate(all_leads):
+        print(f"  [{i+1}/{len(all_leads)}] Sjekker: {lead['name']} ({lead['sted']})")
         if verify_no_website(lead):
             verified.append(lead)
             print(f"    -> Ingen nettside funnet (beholdes)")
         else:
             print(f"    -> Nettside funnet (fjernes)")
 
-        if i < len(leads) - 1:
+        if i < len(all_leads) - 1:
             time.sleep(1.5)
 
-    print(f"\nVerifisering fullført: {len(verified)}/{len(leads)} leads beholdt")
-
-    # Steg 3: E-postberikelse
-    print(f"\nSteg 3: Søker etter e-post for {len(verified)} verifiserte leads...")
-    enrich_emails(verified, "Asker", GEMINI_API_KEY)
+    print(f"\nVerifisering fullført: {len(verified)}/{len(all_leads)} leads beholdt")
 
     # Steg 4: Sorter etter vurdering/anmeldelser
     verified.sort(key=lambda l: (-l["rating"], -l["userRatingCount"]))

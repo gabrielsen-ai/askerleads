@@ -25,7 +25,7 @@ export default function LeadGrid({ leads, onChangeStatus }: Props) {
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Bedrift</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Adresse</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Telefon</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">E-post</th>
+              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Sted</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Rating</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Anmeldelser</th>
               <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide">Nettside</th>
