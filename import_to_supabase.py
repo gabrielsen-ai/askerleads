@@ -89,6 +89,8 @@ def import_leads(json_file: str, existing: dict[str, str]) -> dict[str, str]:
             lead["user_rating_count"] = lead.pop("userRatingCount")
         if "potentialScore" in lead:
             lead["potential_score"] = lead.pop("potentialScore")
+        if "source" not in lead:
+            lead["source"] = "google_places"
     
     print(f"📤 Legger til {len(to_insert)} nye leads...")
     
@@ -111,6 +113,7 @@ if __name__ == "__main__":
     print(f"   {len(existing)} leads finnes allerede i databasen\n")
     
     existing = import_leads("public/leads.json", existing)
-    
+    existing = import_leads("public/leads-brreg.json", existing)
+
     print("\n🎉 Import fullført!")
     print(f"   Totalt {len(existing)} leads i databasen nå.")

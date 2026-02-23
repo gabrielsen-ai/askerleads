@@ -13,7 +13,7 @@ interface Props {
 export default function Dashboard({ leads }: Props) {
   const [search, setSearch] = useState("");
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
-  const [statusFilter, setStatusFilter] = useState<"unused" | "accepted" | "rejected">("unused");
+  const [statusFilter, setStatusFilter] = useState<"unused" | "nye" | "accepted" | "rejected">("unused");
 
   const filtered = useMemo(
     () => sortLeadsByScore(filterLeads(leads, selectedIndustries, search)),
@@ -23,8 +23,14 @@ export default function Dashboard({ leads }: Props) {
   const visibleLeads = useMemo(
     () =>
       filtered.filter((lead) => {
-        const status = lead.status === "pending" || !lead.status ? "unused" : lead.status;
-        return status === statusFilter;
+        const isPending = lead.status === "pending" || !lead.status;
+        if (statusFilter === "nye") {
+          return lead.source === "brreg" && isPending;
+        }
+        if (statusFilter === "unused") {
+          return lead.source !== "brreg" && isPending;
+        }
+        return lead.status === statusFilter;
       }),
     [filtered, statusFilter]
   );
@@ -73,6 +79,17 @@ export default function Dashboard({ leads }: Props) {
           }`}
         >
           ubrukt
+        </button>
+        <button
+          type="button"
+          onClick={() => setStatusFilter("nye")}
+          className={`px-3 py-1.5 rounded-full text-xs font-medium border ${
+            statusFilter === "nye"
+              ? "bg-blue-600 text-white border-blue-600"
+              : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+          }`}
+        >
+          NYE
         </button>
         <button
           type="button"

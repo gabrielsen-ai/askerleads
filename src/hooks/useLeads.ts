@@ -16,6 +16,7 @@ function mapDbLeadToLead(dbLead: any): Lead {
     hasWebsite: dbLead.has_website,
     potentialScore: dbLead.potential_score,
     info: dbLead.info,
+    source: dbLead.source || "google_places",
     status: dbLead.status,
     last_called_at: dbLead.last_called_at,
     last_called_by: dbLead.last_called_by,

@@ -11,6 +11,8 @@ export interface Lead {
   potentialScore: number;
   info: string;
   
+  source?: "google_places" | "brreg";
+
   // Supabase-felter
   status?: "pending" | "accepted" | "rejected" | "no_answer" | "call_later";
   last_called_at?: string;
